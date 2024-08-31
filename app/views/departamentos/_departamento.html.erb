@@ -1,0 +1,25 @@
+<div id="<%= dom_id departamento %>" class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      <h5 class="card-title">Deseja realmente excluir esse departamento?</h5>
+    </div>
+    <div class="card-body">
+      <dl class="row">
+        <dt class="col-sm-3">Nome:</dt>
+        <dd class="col-sm-9"><%= departamento.nome %></dd>
+
+        <dt class="col-sm-3">Descrição:</dt>
+        <dd class="col-sm-9"><%= departamento.descricao %></dd>
+
+        <dt class="col-sm-3">Código:</dt>
+        <dd class="col-sm-9"><%= departamento.codigo %></dd>
+
+        <dt class="col-sm-3">Localização:</dt>
+        <dd class="col-sm-9"><%= departamento.localizacao %></dd>
+
+        <dt class="col-sm-3">Status:</dt>
+        <dd class="col-sm-9"><%= departamento.status %></dd>
+      </dl>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="container mt-2">
+  <div class="row justify-content-center">
+    <div class="col-md-10 bg-white p-4 rounded shadow">
+
+      <% content_for :title, "Departamentos" %>
+
+      <h1>Departamentos</h1>
+
+        <div id="departamentos" class="container">
+          <table class="table table-hover table-bordered table-sm">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Código</th>
+                <th>Localização</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @departamentos.each do |departamento| %>
+                <tr>
+                  <td><%= departamento.nome %></td>
+                  <td><%= departamento.descricao %></td>
+                  <td><%= departamento.codigo %></td>
+                  <td><%= departamento.localizacao %></td>
+                  <td><%= departamento.status %></td>
+                  <td>
+                    <%= link_to "Editar", edit_departamento_path(departamento), class: "btn btn-secondary btn-sm" %>
+                    <%= link_to "Excluir", departamento, method: :delete, data: { confirm: "Você tem certeza?" }, class: "btn btn-danger btn-sm" %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+
+      <%= link_to "Novo Departamento", new_departamento_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>

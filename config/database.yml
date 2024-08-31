@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: ufersa123
+  host: localhost
+  port: 5432
+
+
+development:
+  <<: *default
+  database: gerenciador_de_funcionarios_development
+
+test:
+  <<: *default
+  database: gerenciador_de_funcionarios_test
+
+production:
+  <<: *default
+  database: gerenciador_de_funcionarios_production
+  username: gerenciador_de_funcionarios
+  password: <%= ENV["GERENCIADOR_DE_FUNCIONARIOS_DATABASE_PASSWORD"] %>

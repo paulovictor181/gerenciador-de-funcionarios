@@ -1,0 +1,18 @@
+<div class="container mt-2">
+  <div class="row justify-content-center">
+    <div class="col-md-10 bg-white p-4 rounded shadow">
+      <p style="color: green"><%= notice %></p>
+
+      <%= render @departamento %>
+
+      <div class="container">
+        <div class="text-left">
+          <div class="d-flex gap-2 mt-3">
+            <%= link_to "Voltar", departamentos_path, class: "btn btn-primary" %>
+            <%= button_to "Excluir Departamento", @departamento, method: :delete, class: "btn btn-danger" %>
+          <div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

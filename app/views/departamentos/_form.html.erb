@@ -1,0 +1,42 @@
+<%= simple_form_for @departamento do |f| %>
+  <% if @departamento.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(@departamento.errors.count, "Erro") %> -  Não foi possível salvar o departamento devido aos seguintes erros:</h4>
+      <ul>
+        <% @departamento.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.input :nome, label: "Nome", input_html: { class: 'form-control' } %>
+  </div>
+
+  <div class="form-group">
+    <%= f.input :descricao, label: "Descrição", as: :text, input_html: { class: 'form-control' } %>
+  </div>
+
+  <div class="form-group">
+    <%= f.input :codigo, label: "Código", input_html: { class: 'form-control' } %>
+  </div>
+
+  <div class="form-group">
+    <%= f.input :localizacao, label: "Localização", input_html: { class: 'form-control' } %>
+  </div>
+
+  <% unless departamento.new_record? %>
+    <div class="mb-3">
+      <%= f.label :status, class: "form-label" %>
+      <%= f.select :status, options_for_select([['Ativo', 'Ativo'], ['Inativo', 'Inativo']], departamento.status), { class: "form-select" } %>
+    </div>
+  <% end %>
+
+  <div class="d-flex gap-2 mt-3">
+    <%= link_to "Voltar", departamentos_path, class: "btn btn-primary" %>
+    <%= f.submit departamento.new_record? ? "Cadastrar" : "Atualizar", class: "btn btn-primary" %>
+  <div>
+  
+  <br>
+<% end %>
