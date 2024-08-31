@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_08_31_193634) do
+ActiveRecord::Schema[7.2].define(version: 2024_08_31_212656) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -38,6 +38,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_31_193634) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "departamentos_usuarios", force: :cascade do |t|
+    t.bigint "usuario_id", null: false
+    t.bigint "departamento_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["departamento_id"], name: "index_departamentos_usuarios_on_departamento_id"
+    t.index ["usuario_id"], name: "index_departamentos_usuarios_on_usuario_id"
+  end
+
   create_table "funcionarios", force: :cascade do |t|
     t.string "nome_completo"
     t.date "data_nascimento"
@@ -63,6 +72,23 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_31_193634) do
     t.index ["cargo_id"], name: "index_funcionarios_on_cargo_id"
   end
 
+  create_table "usuarios", force: :cascade do |t|
+    t.string "nome"
+    t.string "senha"
+    t.integer "nivel_acesso"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_usuarios_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
+  end
+
   add_foreign_key "cargos", "departamentos"
+  add_foreign_key "departamentos_usuarios", "departamentos"
+  add_foreign_key "departamentos_usuarios", "usuarios"
   add_foreign_key "funcionarios", "cargos"
 end

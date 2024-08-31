@@ -1,5 +1,7 @@
 class Usuario < ApplicationRecord
-  has_secure_password
+  devise :database_authenticatable, :registerable,
+  :recoverable, :rememberable, :validatable,
+  :trackable, :confirmable, :lockable
 
   # Enum para nível de acesso
   enum nivel_acesso: { admin: 0, gestor_de_rh: 1 }

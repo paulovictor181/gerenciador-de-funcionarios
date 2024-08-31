@@ -1,0 +1,16 @@
+<h1>Cadastrar Usuário</h1>
+<%= form_with(model: @usuario, local: true) do |form| %>
+  <%= form.label :nome %>
+  <%= form.text_field :nome %>
+
+  <%= form.label :email %>
+  <%= form.email_field :email %>
+
+  <%= form.label :senha %>
+  <%= form.password_field :senha %>
+
+  <%= form.label :nivel_acesso %>
+  <%= form.select :nivel_acesso, Usuario.niveis.keys.map { |nivel| [nivel.humanize, nivel] } %>
+
+  <%= form.submit 'Cadastrar' %>
+<% end %>
