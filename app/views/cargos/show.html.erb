@@ -1,0 +1,12 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @cargo %>
+
+<div class="container">
+  <div class="text-left">
+    <div class="d-flex gap-2 mt-3">
+      <%= link_to "Voltar", cargos_path, class: "btn btn-primary" %>
+      <%= button_to "Excluir Cargo", @cargo, method: :delete, class: "btn btn-danger" %>
+    <div>
+  </div>
+</div>

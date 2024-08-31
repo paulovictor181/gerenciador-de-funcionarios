@@ -1,7 +1,7 @@
-<%= simple_form_for @departamento do |f| %>
+<%= simple_form_for @departamento do |form| %>
   <% if @departamento.errors.any? %>
     <div class="alert alert-danger">
-      <h4><%= pluralize(@departamento.errors.count, "Erro") %> -  Não foi possível salvar o departamento devido aos seguintes erros:</h4>
+      <h4><%= pluralize(@departamento.errors.count, "Erro") %> -  Não foi possível salvar o departamento</h4>
       <ul>
         <% @departamento.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -11,31 +11,30 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.input :nome, label: "Nome", input_html: { class: 'form-control' } %>
+    <%= form.input :nome, label: "Nome", input_html: { class: 'form-control' } %>
   </div>
 
   <div class="form-group">
-    <%= f.input :descricao, label: "Descrição", as: :text, input_html: { class: 'form-control' } %>
+    <%= form.input :descricao, label: "Descrição", as: :text, input_html: { class: 'form-control' } %>
   </div>
 
   <div class="form-group">
-    <%= f.input :codigo, label: "Código", input_html: { class: 'form-control' } %>
+    <%= form.input :codigo, label: "Código", as: :integer, input_html: { class: 'form-control' } %>
   </div>
 
   <div class="form-group">
-    <%= f.input :localizacao, label: "Localização", input_html: { class: 'form-control' } %>
+    <%= form.input :localizacao, label: "Localização", input_html: { class: 'form-control' } %>
   </div>
 
   <% unless departamento.new_record? %>
     <div class="mb-3">
-      <%= f.label :status, class: "form-label" %>
-      <%= f.select :status, options_for_select([['Ativo', 'Ativo'], ['Inativo', 'Inativo']], departamento.status), { class: "form-select" } %>
+      <%= form.input :status, as: :select, collection: Departamento.statuses.keys.map { |w| [w.humanize, w] }, label: 'Status', include_blank: false, input_html: { class: 'form-control' } %>
     </div>
   <% end %>
 
   <div class="d-flex gap-2 mt-3">
     <%= link_to "Voltar", departamentos_path, class: "btn btn-primary" %>
-    <%= f.submit departamento.new_record? ? "Cadastrar" : "Atualizar", class: "btn btn-primary" %>
+    <%= form.submit departamento.new_record? ? "Cadastrar" : "Atualizar", class: "btn btn-primary" %>
   <div>
   
   <br>

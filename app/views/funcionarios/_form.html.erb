@@ -1,0 +1,94 @@
+<%= simple_form_for(@funcionario) do |form| %>
+  <% if @funcionario.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(@funcionario.errors.count, "Erro") %> -  Não foi possível salvar o funcionario</h4>
+      <ul>
+        <% @funcionario.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-inputs">
+    <div class="form-group">
+      <%= form.input :nome_completo, label: "Nome Completo", input_html: { class: 'form-control' } %>
+    </div>
+
+    <div class="form-group">
+      <%= form.input :data_nascimento, start_year: Time.now.year, end_year: 1900, label: "Data de Nascimento", input_html: { class: 'form-control' } %>
+    </div>
+
+    <div class="form-group">
+      <%= form.input :genero, label: "Gênero", as: :select, collection: Funcionario.generos.keys, include_blank: false , input_html: { class: 'form-control' } %>
+    </div>
+
+    <div class="form-group">
+      <%= form.input :cpf, label: "CPF", input_html: { class: 'form-control' } %>
+    </div>
+
+    <div class="form-group">
+      <%= form.input :rg, label: "RG", input_html: { class: 'form-control' } %>
+    </div>
+
+    <div class="form-row d-flex gap-2">
+      <div class="form-group" style="flex: 1;">
+        <%= form.input :endereco, label: "Endereço", input_html: { class: 'form-control flex-grow: 1' } %>
+      </div>
+
+      <div class="form-group" style="flex: 0 0 20%;">
+        <%= form.input :numero, label: "Número", input_html: { class: 'form-control flex-grow: 1' } %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= form.input :complemento, label: "Complemento", input_html: { class: 'form-control' } %>
+    </div>
+
+    <div class="form-group">
+      <%= form.input :bairro, label: "Bairro", input_html: { class: 'form-control' } %>
+    </div>
+    <div class="form-group">
+      <%= form.input :cidade, label: "Cidade", input_html: { class: 'form-control' } %>
+    </div>
+
+    <div class="form-group">
+      <%= form.input :estado, label: "Estado", input_html: { class: 'form-control' } %>
+    </div>
+
+    <div class="form-group">
+      <%= form.input :cep, label: "CEP", input_html: { class: 'form-control' } %>
+    </div>
+
+    <div class="form-group">
+      <%= form.input :telefone, label: "Telefone", input_html: { class: 'form-control' } %>
+    </div>
+
+    <div class="form-group">
+      <%= form.input :email, label: "E-mail", input_html: { class: 'form-control'} %>
+    </div>
+
+    <div class="form-group">
+      <%= form.input :cargo_id, collection: Cargo.where(status: :ativo), label_method: :nome, value_method: :id, label: "Cargo", prompt: 'Selecione um Cargo', input_html: { class: 'form-control' } %>
+    </div>
+
+    <div class="form-group">
+      <%= form.input :data_contratacao, start_year: Time.now.year, end_year: 1950, label: "Data de Contratação", input_html: { class: 'form-control' } %>
+    </div>
+
+    <div class="form-group">
+      <%= form.input :salario, label: "Salário", input_html: { class: 'form-control' } %>
+    </div>
+
+    <% unless @funcionario.new_record? %>
+      <div class="mb-3">
+        <%= form.input :status, as: :select, collection: Funcionario.statuses.keys.map { |w| [w.humanize, w] }, label: 'Status', include_blank: false, input_html: { class: 'form-control' } %>
+      </div>
+    <% end %>
+  </div>
+
+    <div class="d-flex gap-2 mt-3">
+    <%= link_to "Voltar", funcionarios_path, class: "btn btn-primary" %>
+    <%= form.submit @funcionario.new_record? ? "Cadastrar" : "Atualizar", class: "btn btn-primary" %>
+  </div>
+<% end %>

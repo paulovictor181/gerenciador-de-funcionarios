@@ -1,0 +1,12 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @funcionario %>
+
+<div class="container">
+  <div class="text-left">
+    <div class="d-flex gap-2 mt-3">
+      <%= link_to "Voltar", funcionarios_path, class: "btn btn-primary" %>
+      <%= button_to "Excluir Funcionario", @funcionario, method: :delete, class: "btn btn-danger" %>
+    <div>
+  </div>
+</div>

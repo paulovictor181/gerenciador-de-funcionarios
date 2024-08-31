@@ -20,7 +20,9 @@ gem "sassc-rails"
 gem "bootstrap", "~> 5.3.3"
 gem "popper_js", "~> 2.11.8"
 gem "simple_form"
-
+gem "bootstrap-datepicker-rails"
+gem "rails-i18n"
+gem "bcrypt"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"

@@ -1,0 +1,5 @@
+class ChangeStatusTypeInDepartamentos < ActiveRecord::Migration[7.2]
+  def change
+    change_column :departamentos, :status, 'integer USING status::integer'
+  end
+end

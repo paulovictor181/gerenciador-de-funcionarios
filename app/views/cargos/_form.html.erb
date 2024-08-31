@@ -1,0 +1,51 @@
+<%= simple_form_for @cargo do |form| %>
+  <% if @cargo.errors.any? %>
+    <div id="alert alert-danger">
+      <h2><%= pluralize(@cargo.errors.count, "Erro") %> Não foi possível salvar o cargo</h2>
+      <ul>
+        <% @cargo.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.input :nome, label: 'Nome', input_html: { class: 'form-control' } %>
+  </div>
+
+  <div class="form-group">
+    <%= form.input :descricao, as: :text, label: 'Descrição', input_html: { class: 'form-control' } %>
+  </div>
+
+  <div class="form-group">
+    <%= form.input :departamento_id, collection: Departamento.all, label_method: :nome, value_method: :id, prompt: 'Selecione um Departamento', input_html: { class: 'form-control' } %>
+  </div>
+
+  <div class="form-group">
+    <%= form.input :nivel, as: :select, collection: Cargo.nivels.keys.map { |w| [w.humanize, w] }, label: 'Nível', input_html: { class: 'form-control' } %>
+  </div>
+
+  <div class="form-group">
+    <%= form.input :salario_base, as: :string, label: 'Salário Base', input_html: { type: 'number' } %>
+  </div>
+
+  <div class="form-group">
+    <%= form.input :requisitos, as: :text, label: 'Requisitos', input_html: { class: 'form-control' } %>
+  </div>
+
+  <div class="form-group">
+    <%= form.input :beneficios, as: :text, label: 'Benefícios', input_html: { class: 'form-control' } %>
+  </div>
+
+  <% unless @cargo.new_record? %>
+    <div class="mb-3">
+      <%= form.input :status, as: :select, collection: Cargo.statuses.keys.map { |w| [w.humanize, w] }, label: 'Status', include_blank: false, input_html: { class: 'form-control' } %>
+    </div>
+  <% end %>
+
+  <div class="d-flex gap-2 mt-3">
+    <%= link_to "Voltar", cargos_path, class: "btn btn-primary" %>
+    <%= form.submit @cargo.new_record? ? "Cadastrar" : "Atualizar", class: "btn btn-primary" %>
+  </div>
+<% end %>

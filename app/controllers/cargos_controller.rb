@@ -13,6 +13,7 @@ class CargosController < ApplicationController
   # GET /cargos/new
   def new
     @cargo = Cargo.new
+    @cargos_ativos = Cargo.where(status: :ativo)
   end
 
   # GET /cargos/1/edit
@@ -21,11 +22,11 @@ class CargosController < ApplicationController
 
   # POST /cargos or /cargos.json
   def create
-    @cargo = Cargo.new(Cargo_params)
+    @cargo = Cargo.new(cargo_params)
 
     respond_to do |format|
       if @cargo.save
-        format.html { redirect_to Cargos_path, notice: "Cargo cadastrado com sucesso." }
+        format.html { redirect_to cargos_path, notice: "Cargo cadastrado com sucesso." }
         format.json { render :show, status: :created, location: @cargo }
       else
         format.html { render :new, status: :unprocessable_entity }

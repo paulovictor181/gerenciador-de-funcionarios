@@ -1,0 +1,29 @@
+<div class="card">
+  <div class="card-header">
+    <h3><%= @cargo.nome %></h3>
+  </div>
+  <div class="card-body">
+    <dl class="row">
+      <dt class="col-sm-3">Descrição:</dt>
+      <dd class="col-sm-9"><%= @cargo.descricao %></dd>
+
+      <dt class="col-sm-3">Departamento:</dt>
+      <dd class="col-sm-9"><%= @cargo.departamento.nome %></dd>
+
+      <dt class="col-sm-3">Nível:</dt>
+      <dd class="col-sm-9"><%= @cargo.nivel.humanize %></dd>
+
+      <dt class="col-sm-3">Salário Base:</dt>
+      <dd class="col-sm-9"><%= @cargo.salario_base %></dd>
+
+      <dt class="col-sm-3">Requisitos:</dt>
+      <dd class="col-sm-9"><%= @cargo.requisitos %></dd>
+
+      <dt class="col-sm-3">Benefícios:</dt>
+      <dd class="col-sm-9"><%= @cargo.beneficios %></dd>
+
+      <dt class="col-sm-3">Status:</dt>
+      <dd class="col-sm-9"><%= @cargo.status.humanize %></dd>
+    </dl>
+  </div>
+</div>

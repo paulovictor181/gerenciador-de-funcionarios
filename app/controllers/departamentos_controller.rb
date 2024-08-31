@@ -8,11 +8,13 @@ class DepartamentosController < ApplicationController
 
   # GET /departamentos/1 or /departamentos/1.json
   def show
+    @formatted_codigo = "DEP#{@departamento.codigo}"
   end
 
   # GET /departamentos/new
   def new
     @departamento = Departamento.new
+    @departamentos_ativos = Departamento.where(status: :ativo)  # Filtra apenas os cargos ativos
   end
 
   # GET /departamentos/1/edit
