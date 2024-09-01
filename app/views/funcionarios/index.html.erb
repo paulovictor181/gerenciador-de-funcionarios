@@ -21,11 +21,17 @@
         <td><%= number_to_currency(funcionario.salario) %></td>
         <td><%= funcionario.status.humanize %></td>
         <td>
-          <%= link_to 'Editar', edit_funcionario_path(funcionario), class: "btn btn-secondary btn-sm" %>
-          <%= link_to 'Excluir', funcionario, method: :delete, data: { confirm: 'Tem certeza?' }, class: "btn btn-danger btn-sm" %>
+          <%= link_to edit_funcionario_path(funcionario), class: "btn btn-secondary btn-sm" do %>
+            <%= image_tag 'edit.png', alt: 'Editar', class: 'btn-icon', style: "filter: invert(100%);"%> Editar
+          <% end %>               
+          <%= link_to funcionario, method: :delete, data: { confirm: 'Tem certeza?' }, class: "btn btn-danger btn-sm" do %>
+            <%= image_tag 'remove.png', alt: 'Excluir', class: 'btn-icon', style: "filter: invert(100%);" %> Excluir
+          <% end %>    
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<%= link_to 'Novo Funcionário', new_funcionario_path, class: "btn btn-primary" %>
+<%= link_to new_funcionario_path, class: "btn btn-primary" do%>
+  <%= image_tag 'stars.png', alt: 'Cadastrar', class: 'btn-icon', style: "filter: invert(100%);" %> Novo Funcionario
+<% end %>

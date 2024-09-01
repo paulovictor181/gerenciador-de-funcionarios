@@ -19,11 +19,17 @@
           <td><%= number_to_currency(cargo.salario_base) %></td>
           <td><%= cargo.status.humanize %></td>
           <td>
-            <%= link_to 'Editar', edit_cargo_path(cargo), class: "btn btn-secondary btn-sm" %>
-            <%= link_to 'Excluir', cargo, method: :delete, data: { confirm: 'Tem certeza?' }, class: "btn btn-danger btn-sm" %>
+            <%= link_to edit_cargo_path(cargo), class: "btn btn-secondary btn-sm" do %>
+              <%= image_tag 'edit.png', alt: 'Editar', class: 'btn-icon', style: "filter: invert(100%);" %> Editar
+            <% end %>
+            <%= link_to cargo, method: :delete, data: { confirm: 'Tem certeza?' }, class: "btn btn-danger btn-sm" do %>
+              <%= image_tag 'remove.png', alt: 'Excluir', class: 'btn-icon', style: "filter: invert(100%);" %> Excluir
+            <% end %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <%= link_to 'Novo Cargo', new_cargo_path, class: "btn btn-primary" %>
+<%= link_to new_cargo_path, class: "btn btn-primary" do%>
+  <%= image_tag 'stars.png', alt: 'Cadastrar', class: 'btn-icon', style: "filter: invert(100%);" %> Novo Cargo
+<% end %>

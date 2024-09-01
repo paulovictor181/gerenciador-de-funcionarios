@@ -23,8 +23,13 @@
             <td><%= departamento.localizacao %></td>
             <td><%= departamento.status %></td>
             <td>
-              <%= link_to "Editar", edit_departamento_path(departamento), class: "btn btn-secondary btn-sm" %>
-              <%= link_to "Excluir", departamento, method: :delete, data: { confirm: "Você tem certeza?" }, class: "btn btn-danger btn-sm" %>
+            <%= link_to edit_departamento_path(departamento), class: "btn btn-secondary btn-sm" do %>
+              <%= image_tag 'edit.png', alt: 'Editar', class: 'btn-icon', style: "filter: invert(100%);"%> Editar
+            <% end %>               
+            <%= link_to departamento, method: :delete, data: { confirm: "Você tem certeza?" }, class: "btn btn-danger btn-sm" do %>
+              <%= image_tag 'remove.png', alt: 'Excluir', class: 'btn-icon', style: "filter: invert(100%);" %> Excluir
+            <% end %>             
+
             </td>
           </tr>
         <% end %>
@@ -32,4 +37,6 @@
     </table>
   </div>
 
-<%= link_to "Novo Departamento", new_departamento_path, class: "btn btn-primary" %>
+<%= link_to new_departamento_path, class: "btn btn-primary" do %>
+  <%= image_tag 'stars.png', alt: 'Cadastrar', class: 'btn-icon', style: "filter: invert(100%);" %> Novo Departamento
+<% end %>
