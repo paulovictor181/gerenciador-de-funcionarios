@@ -74,21 +74,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_01_013553) do
 
   create_table "usuarios", force: :cascade do |t|
     t.string "nome"
+    t.string "email"
     t.string "senha"
     t.integer "nivel_acesso"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.index ["email"], name: "index_usuarios_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   end
 
   add_foreign_key "cargos", "departamentos", on_delete: :cascade
   add_foreign_key "departamentos_usuarios", "departamentos"
   add_foreign_key "departamentos_usuarios", "usuarios"
-  add_foreign_key "funcionarios", "cargos"
+  add_foreign_key "funcionarios", "cargos", on_delete: :cascade
 end
